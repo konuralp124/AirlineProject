@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Show Revenue</title>
+</head>
+
+<body>
+    <h1>Total Revenue</h1>
+
+    {% if revenue %}
+        <p>Total Revenue Last Month: ${{ revenue.last_month | round(2) }}</p>
+        <p>Total Revenue Last Year: ${{ revenue.last_year | round(2) }}</p>
+    {% else %}
+        <p>No revenue data available.</p>
+    {% endif %}
+    <a href="{{ url_for('airlineStaffProfile') }}">Return to your staff profile</a>
+
+</html>

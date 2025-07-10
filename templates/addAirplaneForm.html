@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Airplane Form</title>
+</head>
+
+<body>
+    <h1>Add Airplane in the System</h1>
+
+    <!-- Display error message if any -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Display form for adding a new airplane -->
+    <form action="{{ url_for('addAirplaneForm') }}" method="post">
+
+        <label for="airplaneId">Airplane ID:</label>
+        <input type="text" id="airplaneId" name="airplaneId" required><br>
+
+        <label for="numberOfSeats">Number of Seats:</label>
+        <input type="number" id="numberOfSeats" name="numberOfSeats" required><br>
+
+        <label for="manufacturerCompany">Manufacturer Company:</label>
+        <input type="text" id="manufacturerCompany" name="manufacturerCompany" required><br>
+
+        <label for="modelNumber">Model Number:</label>
+        <input type="text" id="modelNumber" name="modelNumber" required><br>
+
+        <label for="manufactureDate">Manufacture Date:</label>
+        <input type="date" id="manufactureDate" name="manufactureDate" required><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br>
+
+        <input type="submit" value="Add Airplane">
+    </form>
+    <a href="{{ url_for('airlineStaffProfile') }}">Return to your staff profile</a>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!-- viewFlights.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>View Flights</title>
+</head>
+
+<body>
+    <h1>View Flights</h1>
+
+    <!-- Display error message if any -->
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Display form for viewing flights -->
+    <form action="{{ url_for('viewFlightsForm') }}" method="post">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" required><br>
+
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" required><br>
+
+        <label for="sourceAirport">Source Airport:</label>
+        <input type="text" id="sourceAirport" name="sourceAirport"><br>
+
+        <label for="destinationAirport">Destination Airport:</label>
+        <input type="text" id="destinationAirport" name="destinationAirport"><br>
+
+        <button type="submit">View Flights</button>
+    </form>
+
+
+    {% if futureFlights %}
+    <h2>Future Flights (Next 30 Days)</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Flight Number</th>
+                <th>Departure Date and Time</th>
+                <th>Arrival Date and Time</th>
+                <th>Departure Airport Code</th>
+                <th>Arrival Airport Code</th>
+                <th>Base Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in futureFlights %}
+            <tr>
+                <td>{{ flight['flight_number'] }}</td>
+                <td>{{ flight['departure_date_time'] }}</td>
+                <td>{{ flight['arrival_date_time'] }}</td>
+                <td>{{ flight['departure_airport_code'] }}</td>
+                <td>{{ flight['arrival_airport_code'] }}</td>
+                <td>{{ flight['base_price'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% endif %}
+
+    {% if flights %}
+    <h2>Flights</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Airline Name</th>
+                <th>Flight Number</th>
+                <th>Departure Date and Time</th>
+                <th>Arrival Date and Time</th>
+                <th>Source Airport</th>
+                <th>Destination Airport</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in flights %}
+            <tr>
+                <td>{{ flight['airline_name'] }}</td>
+                <td>{{ flight['flight_number'] }}</td>
+                <td>{{ flight['departure_date_time'] }}</td>
+                <td>{{ flight['arrival_date_time'] }}</td>
+                <td>{{ flight['arrival_airport_code'] }}</td>
+                <td>{{ flight['departure_airport_code'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+<a href="{{ url_for('airlineStaffProfile') }}">Return to your staff profile</a>
+</html>

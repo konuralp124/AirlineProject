@@ -1,0 +1,71 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Most Frequent Customer</title>
+</head>
+<body>
+    <h1>View Most Frequent Customer</h1>
+
+    <!-- Display error message if any -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+
+    {% if frequentCustomer %}
+        <h2>Most Frequent Customer</h2>
+        <p>
+            The most frequent customer for the specified airline within the last year is:
+            <br>
+            Customer Email: {{ frequentCustomer['customer_email'] }}
+            <br>
+            Total Flights: {{ frequentCustomer['total_flights'] }}
+        </p>
+    {% endif %}
+
+    <form action="{{ url_for('viewFrequentCustomersForm') }}" method="get">
+        <label for="customerEmail">Customer Email:</label>
+        <input type="text" id="customerEmail" name="customerEmail" placeholder="Customer Email" required><br>
+
+        <input type="submit" value="View Details">
+    </form>
+
+    <!-- Display most frequent customer and customer's flights if available -->
+    {% if customer_details %}
+    
+        <h2>Customer's Flights on {{ customer_details['airline_name'] }}:</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Airline Name</th>
+                    <th>Flight Number</th>
+                    <th>Departure Date and Time</th>
+                    <th>Arrival Date and Time</th>
+                    <th>Base Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for flight in customer_details %}
+                    <tr>
+                        <td>{{ flight['airline_name'] }}</td>
+                        <td>{{ flight['flight_number'] }}</td>
+                        <td>{{ flight['departure_date_time'] }}</td>
+                        <td>{{ flight['arrival_date_time'] }}</td>
+                        <td>{{ flight['base_price'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <a href="{{ url_for('airlineStaffProfile') }}">Return to your staff profile</a>
+</body>
+
+</html>
+
+
+
+

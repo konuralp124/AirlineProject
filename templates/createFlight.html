@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Flight</title>
+</head>
+
+<body>
+    <h1>Create New Flight</h1>
+
+    <!-- Display error message if any -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Display form for creating a new flight -->
+    <form action="{{ url_for('createFlight') }}" method="post">
+        <input type="hidden" name="airlineName" value="{{ session['airlineName'] }}">
+
+        <label for="flightNumber">Flight Number:</label>
+        <input type="text" id="flightNumber" name="flightNumber" required><br>
+
+        <label for="departureDateTime">Departure Date and Time:</label>
+        <input type="datetime-local" id="departureDateTime" name="departureDateTime" required><br>
+
+        <label for="arrivalDateTime">Arrival Date and Time:</label>
+        <input type="datetime-local" id="arrivalDateTime" name="arrivalDateTime" required><br>
+
+        <label for="departureAirportCode">Departure Airport Code:</label>
+        <input type="text" id="departureAirportCode" name="departureAirportCode" required><br>
+
+        <label for="arrivalAirportCode">Arrival Airport Code:</label>
+        <input type="text" id="arrivalAirportCode" name="arrivalAirportCode" required><br>
+
+        <label for="basePrice">Base Price:</label>
+        <input type="number" step="0.01" id="basePrice" name="basePrice" required><br>
+
+        <!-- New parameters for adding a plane -->
+        <label for="planeAirlineName">Plane Airline Name:</label>
+        <input type="text" id="planeAirlineName" name="planeAirlineName" required><br>
+
+        <label for="planeID">Plane ID:</label>
+        <input type="text" id="planeID" name="planeID" required><br>
+
+        <label for="planeStatus">Plane Status:</label>
+        <select id="planeStatus" name="planeStatus" required>
+            <option value="On-time">On-time</option>
+            <option value="Delayed">Delayed</option>
+        </select><br>
+
+        <input type="submit" value="Create Flight">
+    </form>
+
+    <hr>
+    <a href="{{ url_for('airlineStaffProfile') }}">Return to your staff profile</a>
+</body>
+
+</html>

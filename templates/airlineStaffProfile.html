@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Airline Reservation System</title>
+</head>
+
+<body>
+    <h1>Welcome to the Airline Reservation System</h1>
+    <!-- Create New Flights -->
+    <nav>
+        <a href="{{ url_for('viewFlightsForm') }}">View Flights</a> |
+        <a href="{{ url_for('viewCustomersForFlight') }}">View Customers on Flight</a> |
+        <a href="{{ url_for('createFlight') }}">Create Flight</a> |
+        <a href="{{ url_for('changeFlightStatus') }}">Change Flight Status</a> |
+        <a href="{{ url_for('addAirplaneForm') }}">Add Airplane</a> |
+        <a href="{{ url_for('addAirportForm') }}">Add Airport</a> |
+        <a href="{{ url_for('viewFlightRatingsForm') }}">View Flight Ratings</a> |
+        <a href="{{ url_for('scheduleMaintenanceForm') }}">Schedule Maintenance</a> |
+        <a href="{{ url_for('viewFrequentCustomersForm') }}">View Frequent Customers</a> |
+        <a href="{{ url_for('viewEarnedRevenueForm') }}">View Earned Revenue</a>|
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+    <body>
+        <h1>Staff Information</h1>
+    
+        <p>Username: {{ username }}</p>
+        <p>Airline Name: {{ airline_name }}</p>
+    </body>
+   
+
+    
+</body>
+
+</html>

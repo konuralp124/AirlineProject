@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Future Flights</title>
+</head>
+<body>
+    <h1>My Future Flights</h1>
+
+    <!-- Display success or error messages -->
+    {% if message %}
+        <p style="color: green;">{{ message }}</p>
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Flight Number</th>
+                <th>Departure Date and Time</th>
+                <th>Arrival Date and Time</th>
+                <th>Departure Airport Code</th>
+                <th>Arrival Airport Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in flights %}
+                <tr>
+                    <td>{{ flight.flight_number }}</td>
+                    <td>{{ flight.departure_date_time }}</td>
+                    <td>{{ flight.arrival_date_time }}</td>
+                    <td>{{ flight.departure_airport_code }}</td>
+                    <td>{{ flight.arrival_airport_code }}</td>
+                    <td>
+                        
+                        {% if flight.more_than_24hrs %}
+                        <form action="{{ url_for('cancelTicket') }}" method="post">
+                        <input type="hidden" name="flight_number" value="{{ flight.flight_number }}">
+                        <input type="submit" value="Cancel Trip">
+                        </form>
+                {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('customerProfile') }}">Back to Customer Profile</a>
+</body>
+</html>

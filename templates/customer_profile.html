@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Profile</title>
+</head>
+<body>
+    {% if error %}
+    {{error}}
+    {% endif %}
+    <h1>Customer Profile</h1>
+
+    <!-- Display customer information -->
+    <p>Name: {{ customer_info.first_name }} {{ customer_info.last_name }}</p>
+    <p>Email: {{ customer_info.email }}</p>
+    <!-- Add more fields as necessary -->
+
+    <h2>Flight Management</h2>
+    <div>
+        <!-- Button to view future flights -->
+        <a href="{{ url_for('myFlights') }}"><button>View Future Flights</button></a>
+        <!-- Additional buttons for other functionalities will be added here -->
+        <!-- Button to rate and comment on past flights -->
+        <a href="{{ url_for('rateFlights') }}"><button>Rate and Comment on Past Flights</button></a>
+        <a href="{{ url_for('trackSpending') }}"><button>Track My Spending</button></a>
+    </div>
+
+    <h2>Search for Flights</h2>
+    <form action="{{ url_for('searchFlightsFromProfile') }}" method="get">
+    <input type="text" name="depCity" placeholder="Departure City" required> <br>
+    <input type="text" name="arrCity" placeholder="Arrival City" required> <br>
+    Departure Date:<input type="date" name="depDate" required> <br>
+    Return Date: <input type="date" name="retDate"> <br>
+    
+    Oneway Filter: <input type="submit" name="action" value="oneWay">
+    Return Filter: <input type="submit" name="action" value="return">
+</form>
+
+<!-- Displaying flights -->
+    {% if onewayFlights %}
+        <!-- to be done later -->
+    <h1>Search Results for one way flights</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Airline Name</th>
+                <th>Flight Number</th>
+                <th>Departure Date and Time</th>
+                <th>Arrival Date and Time</th>
+                <th>Base Price</th>
+                <th>Calculated Price</th>
+                <th>Departure Airport</th>
+                <th>Arrival Airport</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in onewayFlights %}
+                <tr>
+                    <td>{{ flight['airline_name'] }}</td>
+                    <td>{{ flight['flight_number'] }}</td>
+                    <td>{{ flight['departure_date_time'] }}</td>
+                    <td>{{ flight['arrival_date_time'] }}</td>
+                    <td>{{ flight['base_price'] }}</td>
+                    <td>{{ flight['calculated_price'] }}</td>
+                    <td>{{ flight['departure_airport'] }}</td>
+                    <td>{{ flight['arrival_airport'] }}</td>
+                    <td>
+                        <a href="{{ url_for('purchaseTicket', flight_number=flight.flight_number, departure_date_time=flight.departure_date_time, calculated_price=flight.calculated_price,
+                        airline_name=flight.airline_name) }}">
+                            <button>Purchase Tickets</button>
+                        </a>
+                        
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+        
+    {% if returnFlights %}
+        <!-- to be done later -->
+    
+    <h1>Search Results for Return Flights</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Departure Airline</th>
+                <th>Departure Flight Number</th>
+                <th>Departure Date and Time</th>
+                <th>Arrival Date and Time</th>
+                <!-- <th>Departure Base Price</th> -->
+                <th>Departure Calculated Price</th>
+                <th>Return Airline</th>
+                <th>Return Flight Number</th>
+                <th>Return Date and Time</th>
+                <th>Return Arrival Date and Time</th>
+                <!-- <th>Return Base Price</th> -->
+                <th>Return Calculated Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in returnFlights %}
+                <tr>
+                    <td>{{ flight['departure_airline_name'] }}</td>
+                    <td>{{ flight['departure_flight_number'] }}</td>
+                    <td>{{ flight['departure_date_time'] }}</td>
+                    <td>{{ flight['arrival_date_time'] }}</td>
+                    <!-- <td>{{ flight['departure_base_price'] }}</td> -->
+                    <td>{{ flight['departure_calculated_price'] }}</td>
+                    <td>{{ flight['return_airline_name'] }}</td>
+                    <td>{{ flight['return_flight_number'] }}</td>
+                    <td>{{ flight['return_date_time'] }}</td>
+                    <td>{{ flight['return_arrival_date_time'] }}</td>
+                    <!-- <td>{{ flight['return_base_price'] }}</td> -->
+                    <td>{{ flight['return_calculated_price'] }}</td>
+                    <td>
+                        <!-- Purchase Tickets button is always visible -->
+                        <a href="{{ url_for('purchaseTicket', flight_number=flight.flight_number, departure_date_time=flight.departure_date_time) }}">
+                            <button>Purchase Tickets</button>
+                        </a>
+                        
+                    </td>
+
+                </tr>
+            {% endfor %}
+    {% endif %}
+
+
+
+<a href="{{ url_for('index') }}"><button>Log out</button></a>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase Ticket</title>
+</head>
+<body>
+
+    <h1>Purchase Ticket for Flight Number: {{ flight_number }} on {{ departure_date_time }}</h1>
+    <form action="{{ url_for('purchaseTicket') }}" method="post">
+        <label for="flight_number">Flight Number:</label><br>
+        <input type="text" id="flight_number" name="flight_number" placeholder="Flight Number" value="{{ flight_number }}" required readonly><br>
+
+        <label for="departure_date_time">Departure Date and Time:</label><br>
+        <input type="text" id="departure_date_time" name="departure_date_time" value="{{ departure_date_time }}" required readonly><br>
+        <label for="airline_name">Airline Name:</label><br>
+        <input type="text" id="airline_name" name="airline_name" placeholder="Airline Name" value="{{ airline_name }}" required readonly><br>
+     <!-- User details -->
+     <label for="first_name">First Name:</label><br>
+     <input type="text" id="first_name" name="first_name" placeholder="First Name" required><br>
+     
+     <label for="last_name">Last Name:</label><br>
+     <input type="text" id="last_name" name="last_name" placeholder="Last Name" required><br>
+     
+     <label for="date_of_birth">Date of Birth:</label><br>
+     <input type="date" id="date_of_birth" name="date_of_birth" required><br>
+     
+     <label for="calculated_price">Price:</label><br>
+     <input type="number" id="calculated_price" name="calculated_price" placeholder="Price" value="{{ calculated_price }}" required readonly><br>
+     
+     <!-- Payment details -->
+     <label for="card_type">Card Type:</label><br>
+     <input type="text" id="card_type" name="card_type" placeholder="Card Type" required><br>
+     
+     <label for="card_number">Card Number:</label><br>
+     <input type="text" id="card_number" name="card_number" placeholder="Card Number" required><br>
+     
+     <label for="name_on_card">Name on Card:</label><br>
+     <input type="text" id="name_on_card" name="name_on_card" placeholder="Name on Card" required><br>
+     
+     <label for="expiration_date">Card Expiry Date:</label><br>
+     <input type="date" id="expiration_date" name="expiration_date" required><br>
+     
+     <label for="email">Email:</label><br>
+     <input type="email" id="email" name="email" placeholder="Email" value="{{ email }}" required readonly><br>
+
+     <input type="submit" value="Purchase Ticket">
+    </form>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

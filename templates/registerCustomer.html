@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+    <h2>Register as a a customer</h2>
+    <form action="{{ url_for('registerCustomer') }}" method="post">
+        <input type="text" name="email" placeholder="Email for customers" required> <br> 
+        <input type="password" name="password" placeholder="Password" required> <br> 
+        <input type="text" name="first_name" placeholder="First Name" required><br> 
+        <input type="text" name="last_name" placeholder="Last Name" required><br> 
+        <input type="text" name="building_no" placeholder="Building Number" required><br> 
+        <input type="text" name="street_name" placeholder="Street Name" required><br> 
+        <input type="text" name="apt_number" placeholder="Apartment Number" required><br> 
+        <input type="text" name="city" placeholder="City" required><br> 
+        <input type="text" name="state_" placeholder="State" required><br> 
+        <input type="text" name="zip_code" placeholder="Zip Code" required><br> 
+        <input type="text" name="passport_number" placeholder="Passport Number" required><br> 
+        Passport Expiration:<input type="date" name="passport_expiration" placeholder="Passport Expiration Date" required><br> 
+        <input type="text" name="passport_country" placeholder="Passport Country" required><br> 
+        Date of Birth: <input type="date" name="date_of_birth" placeholder="Date of Birth" required><br> 
+        Phone Numbers: (Separated by comma if multiple) <input type="textArea" name="phone_numbers" placeholder="phone numbers"required>
+        <input type="submit" value="register as a customer">
+    </form>
+
+    <!-- Error message display -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>

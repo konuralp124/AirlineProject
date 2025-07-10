@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Airport Form</title>
+</head>
+
+<body>
+    <h1>Add New Airport</h1>
+
+    <!-- Display error message if any -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Display form for adding a new airport -->
+    <form action="{{ url_for('addAirportForm') }}" method="post">
+        <label for="airportCode">Airport Code:</label>
+        <input type="text" id="airportCode" name="airportCode" required><br>
+
+        <label for="airportName">Airport Name:</label>
+        <input type="text" id="airportName" name="airportName" required><br>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required><br>
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" required><br>
+
+        <label for="numOfTerminals">Number of Terminals:</label>
+        <input type="number" id="numOfTerminals" name="numOfTerminals" required><br>
+
+        <label for="airportType">Airport Type:</label>
+        <select id="airportType" name="airportType" required>
+            <option value="Domestic">Domestic</option>
+            <option value="International">International</option>
+            <option value="Both">Both</option>
+        </select><br>
+
+        <input type="submit" value="Add Airport">
+    </form>
+    <a href="{{ url_for('airlineStaffProfile') }}">Return to your staff profile</a>
+</body>
+
+</html>

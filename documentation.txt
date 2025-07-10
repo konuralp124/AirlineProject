@@ -1,0 +1,49 @@
+addAirplaneForm.html:
+
+Purpose: HTML form for adding a new airplane.
+Content: Form fields for entering airplane details.
+
+addAirportForm.html:
+
+Purpose: HTML form for adding a new airport.
+Content: Form fields for entering airport details.
+
+airlineStaffProfile.html:
+
+Purpose: HTML page for displaying the airline staff profile.
+Content: Information about the airline staff member.
+
+changeFlightStatus.html:
+
+Purpose: HTML form for changing the flight status.
+Content: Form fields for entering flight details and new status.
+
+checkStatus.html:
+
+Purpose: HTML page for checking the status of a flight.
+Content: Form for entering flight details and displaying the status.
+
+createFlight.html:
+
+Purpose: HTML form for creating a new flight.
+Content: Form fields for entering flight details.
+
+scheduleMaintenanceForm.html:
+
+Purpose: HTML form for scheduling maintenance for an airplane.
+Content: Form fields for entering maintenance details.
+
+viewEarnedRevenueForm.html:
+
+Purpose: HTML page for viewing the earned revenue.
+Content: Information about revenue earned from ticket sales.
+
+viewFlightRatingsForm.html:
+
+Purpose: HTML page for viewing flight ratings and comments.
+Content: Form for entering flight details and displaying ratings/comments.
+
+viewFrequentCustomersForm.html:
+
+Purpose: HTML page for viewing the most frequent customer and customer-specific flights.
+Content: Form for entering customer details and displaying relevant information.

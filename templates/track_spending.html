@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Track My Spending</title>
+</head>
+<body>
+    <h1>Spending in the Past Year: {{ total_spent_year }}</h1>
+
+   <!-- ... -->
+
+<h2>Monthly Spending in the Last Six Months</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Month</th>
+            <th>Spending</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for month_data in monthly_spending_with_dates %}
+        <tr>
+            <td>{{ month_data.month }}</td>
+            <td>{{ month_data.total }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- ... -->
+
+
+    <h2>Custom Date Range Spending</h2>
+    <form action="{{ url_for('trackSpending') }}" method="get">
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" value="{{ start_date }}" required>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" value="{{ end_date }}" required>
+
+        <input type="submit" value="Get Spending">
+    </form>
+
+    {% if custom_spending is not none %}
+        <p>Spending from {{ start_date }} to {{ end_date }}: {{ custom_spending }} dollars</p>
+    {% endif %}
+
+    <!-- Back to Profile -->
+    <a href="{{ url_for('customerProfile') }}"><button>Back to Profile</button></a>
+</body>
+</html>

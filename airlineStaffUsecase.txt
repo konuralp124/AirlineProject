@@ -1,0 +1,90 @@
+1. View Flights
+Description: View future flights operated by the airline for the next 30 days or within a specified range.
+Queries Executed:
+
+SELECT * FROM Flight
+WHERE airline_name = 'staff_airline_name' AND departure_date_time >= CURDATE()
+ORDER BY departure_date_time ASC;
+
+SELECT * FROM Customer
+WHERE email IN (SELECT email FROM Ticket WHERE airline_name = 'staff_airline_name' AND flight_number = 'flight_number');
+
+
+2. Create New Flights
+Description: Airline staff creates a new flight with provided data via forms.
+Queries Executed:
+
+INSERT INTO Flight (airline_name, flight_number, departure_date_time, arrival_date_time, departure_airport_code, arrival_airport_code, base_price)
+VALUES ('staff_airline_name', 'new_flight_number', 'new_departure_datetime', 'new_arrival_datetime', 'new_departure_airport_code', 'new_arrival_airport_code', 'new_base_price');
+
+
+3. Change Status of Flights
+Description: Airline staff changes the status of a flight (on-time to delayed or vice versa) via forms.
+Queries Executed:
+
+UPDATE Flight
+SET status_ = 'new_status'
+WHERE airline_name = 'staff_airline_name' AND flight_number = 'flight_number' AND departure_date_time = 'departure_datetime';
+
+
+4. Add Airplane in the System
+Description: Airline staff adds a new airplane with provided data via forms.
+Queries Executed:
+
+INSERT INTO Airplane (airline_name, airplane_id, number_of_seats, manu_company, model_number, manu_date, age)
+VALUES ('staff_airline_name', 'new_airplane_id', 'new_number_of_seats', 'new_manu_company', 'new_model_number', 'new_manu_date', 'new_age');
+
+
+5. Add New Airport in the System
+Description: Airline staff adds a new airport with provided data via forms.
+Queries Executed:
+
+INSERT INTO Airport (airport_code, airport_name, city, country, num_of_terminals, type_)
+VALUES ('new_airport_code', 'new_airport_name', 'new_city', 'new_country', 'new_num_of_terminals', 'new_type');
+
+
+6. View Flight Ratings
+Description: Airline staff views each flight's average ratings and all comments and ratings given by customers.
+Queries Executed:
+
+SELECT AVG(rating) AS average_rating, email, rating, comments
+FROM Evaluations
+WHERE airline_name = 'staff_airline_name' AND flight_number = 'flight_number'
+GROUP BY email, rating, comments;
+
+
+7. Schedule Maintenance
+Description: Airline staff schedules maintenance for a particular airplane with start and end dates.
+Queries Executed:
+
+INSERT INTO Maintenance (airline_name, airplane_id, start_date_time, end_date_time)
+VALUES ('staff_airline_name', 'airplane_id', 'start_datetime', 'end_datetime');
+
+8. View Frequent Customers
+Description: Airline staff views the most frequent customer within the last year and a list of all flights for a particular customer.
+Queries Executed:
+
+SELECT email, COUNT(*) AS num_of_flights
+FROM Ticket
+WHERE airline_name = 'staff_airline_name' AND purchase_date_time BETWEEN CURDATE() - INTERVAL 1 YEAR AND CURDATE()
+GROUP BY email
+ORDER BY num_of_flights DESC
+LIMIT 1;
+
+SELECT * FROM Flight
+WHERE airline_name = 'staff_airline_name' AND flight_number IN (SELECT flight_number FROM Ticket WHERE email = 'customer_email');
+
+9. View Earned Revenue
+Description: Show the total amount of revenue earned from ticket sales in the last month and last year.
+Queries Executed:
+
+SELECT SUM(calculated_price) AS total_revenue_last_month
+FROM Ticket
+WHERE airline_name = 'staff_airline_name' AND purchase_date_time BETWEEN CURDATE() - INTERVAL 1 MONTH AND CURDATE();
+
+SELECT SUM(calculated_price) AS total_revenue_last_year
+FROM Ticket
+WHERE airline_name = 'staff_airline_name' AND purchase_date_time BETWEEN CURDATE() - INTERVAL 1 YEAR AND CURDATE();
+
+
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>View Flight Ratings</title>
+</head>
+
+<body>
+    <h1>View Flight Ratings</h1>
+
+    <!-- Display error message if any -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Display form for viewing flight ratings -->
+    <form action="/viewFlightRatingsForm" method="get">
+        Airline name:<input type="text" name="airlineName" placeholder="airline name" required> <br>
+        Flight number:<input type="text" name="flightNumber" placeholder="flight number" required> <br>
+        Departure Date:<input type="date" name="depDate" placeholder="Departure Date" required> <br>
+        <input type="submit" value="View Ratings">
+    </form>
+
+    <!-- Display flight ratings if available -->
+    <!-- Display flight ratings if available -->
+{% if flight_rating %}
+<h2>Average Rating: {{ flight_rating['average_rating'] }}</h2>
+<h2>Customer Reviews:</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Rating</th>
+            <th>Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rating in flight_rating['ratings'] %}
+            <tr>
+                <td>{{ rating['email'] }}</td>
+                <td>{{ rating['rating'] }}</td>
+                <td>{{ rating['comments'] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<a href="{{ url_for('airlineStaffProfile') }}">Return to your staff profile</a>
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Maintenance</title>
+</head>
+
+<body>
+    <h1>Schedule Maintenance</h1>
+
+    <!-- Display error message if any -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Display form for scheduling maintenance -->
+    <form action="{{ url_for('scheduleMaintenanceForm') }}" method="post">
+        <label for="airlineName">Airline Name:</label>
+        <input type="text" id="airlineName" name="airlineName" required><br>
+
+        <label for="airplaneId">Airplane ID:</label>
+        <input type="text" id="airplaneId" name="airplaneId" required><br>
+
+        <label for="startDate">Start Date and Time:</label>
+        <input type="datetime-local" id="startDate" name="startDate" required><br>
+
+        <label for="endDate">End Date and Time:</label>
+        <input type="datetime-local" id="endDate" name="endDate" required><br>
+
+        <input type="submit" value="Schedule Maintenance">
+    </form>
+    <a href="{{ url_for('airlineStaffProfile') }}">Return to your staff profile</a>
+</body>
+
+</html>

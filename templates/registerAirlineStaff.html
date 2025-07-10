@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+    <h2>Register as an airline staff</h2>
+    <form action="{{ url_for('registerAirlineStaff') }}" method="post">
+        <input type="text" name="username" placeholder="Username for Staff" required> <br> 
+        <input type="password" name="password" placeholder="Password" required> <br> 
+        <input type="text" name="first_name" placeholder="First Name" required><br> 
+        <input type="text" name="last_name" placeholder="Last Name" required><br> 
+        Date of Birth: <input type="date" name="date_of_birth" placeholder="date_of_birth" required><br> 
+        <input type="text" name="airline_name" placeholder="Airline Name" required><br> 
+        Emails: (Separated by comma if multiple) <input type="textArea" name="emails" placeholder="Emails"required>
+        Phone Numbers: (Separated by comma if multiple) <input type="textArea" name="phone_numbers" placeholder="Phone Numbers"required>
+        <input type="submit" value="register as an airline staff">
+    </form>
+
+    <!-- Error message display -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+        {% if error1 %}
+        <p style="color: red;">{{ error1 }}</p>
+    {% endif %}
+</body>
+</html>

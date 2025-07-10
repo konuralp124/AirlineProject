@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Change Flight Status</title>
+</head>
+<body>
+    <h1>Change Flight Status</h1>
+
+    <form action="{{ url_for('changeFlightStatus') }}" method="post">
+        <!-- Input fields for changing flight status -->
+        Airline name:<input type="text" name="airlineName" placeholder="airline name" required> <br>
+        Flight number:<input type="text" name="flightNumber" placeholder="flight number" required> <br>
+        Departure Date:<input type="date" name="depDate" placeholder="Departure Date" required> <br>
+
+        <label for="newStatus">New Status:</label>
+        <select id="newStatus" name="new_status" required>
+            <option value="On-time">On-time</option>
+            <option value="Delayed">Delayed</option>
+        </select><br>
+
+        <button type="submit">Change Flight Status</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <a href="{{ url_for('airlineStaffProfile') }}">Return to your staff profile</a>
+</body>
+
+</html>

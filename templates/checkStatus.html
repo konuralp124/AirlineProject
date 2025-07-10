@@ -1,0 +1,35 @@
+<h1> You can check your flight's status from here. </h1>
+<form action="/checkStatus" method="get">
+        Airline name:<input type="text" name="airlineName" placeholder="airline name" required> <br>
+        Flight number:<input type="text" name="flightNumber" placeholder="flight number" required> <br>
+        Departure Date:<input type="date" name="depDate" placeholder="Departure Date" required> <br>
+        <input type="submit" value="check status">
+</form>
+
+{% if error %}
+        <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+
+{% if status %}
+
+<h1>Status for the searched Flight</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Airline Name</th>
+                <th>Flight Number</th>
+                <th>Departure Date and Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>{{ status['airline_name'] }}</td>
+                    <td>{{ status['flight_number'] }}</td>
+                    <td>{{ status['departure_date_time'] }}</td>
+                    <td>{{ status['status_'] }}</td>
+                </tr>
+        </tbody>
+    </table>
+{% endif %}

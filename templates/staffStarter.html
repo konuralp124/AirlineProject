@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Airline Reservation System</title>
+</head>
+
+<body>
+    <h1>Welcome to the Airline Reservation System</h1>
+
+    <!-- View Flights -->
+    <h2>View Flights</h2>
+    <form action="/viewFlight" method="get" id="viewFlightsForm">
+        <label>Start Date:</label>
+        <input type="date" name="startDate">
+        <label>End Date:</label>
+        <input type="date" name="endDate">
+        <button type="submit" name="action" value="viewAllFlights">View All Future Flights</button>
+        <button type="submit" name="action" value="searchFlights">Search Flights</button>
+    </form>
+
+    <!-- Create New Flights -->
+    <h2>Create New Flights</h2>
+    <form action="/create_flight" method="post">
+        <label for="flight_number">Flight Number:</label>
+        <input type="text" id="flight_number" name="flight_number" required><br>
+
+        <label for="departure_date_time">Departure Date and Time:</label>
+        <input type="datetime-local" id="departure_date_time" name="departure_date_time" required><br>
+
+        <label for="arrival_date_time">Arrival Date and Time:</label>
+        <input type="datetime-local" id="arrival_date_time" name="arrival_date_time" required><br>
+
+        <label for="departure_airport_code">Departure Airport Code:</label>
+        <input type="text" id="departure_airport_code" name="departure_airport_code" required><br>
+
+        <label for="arrival_airport_code">Arrival Airport Code:</label>
+        <input type="text" id="arrival_airport_code" name="arrival_airport_code" required><br>
+
+        <label for="base_price">Base Price:</label>
+        <input type="number" id="base_price" name="base_price" required><br>
+
+        <label for="airplane_id">Airplane ID:</label>
+        <input type="text" id="airplane_id" name="airplane_id" required><br>
+
+        <button type="submit">Create Flight</button>
+    </form>
+
+    <!-- Change Status of Flights -->
+    <h2>Change Status of Flights</h2>
+    <form action="/changeFlightStatus" method="get">
+        <!-- Add input fields for flight status change -->
+        <button type="submit" name="action" value="changeFlightStatus">Change Flight Status</button>
+    </form>
+
+    <!-- Add Airplane in the System -->
+    <h2>Add Airplane in the System</h2>
+    <form action="/addAirplaneForm" method="get">
+        <!-- Add input fields for new airplane -->
+        <button type="submit" name="action" value="addNewAirplane">Add New Airplane</button>
+    </form>
+
+    <!-- Add New Airport in the System -->
+    <h2>Add New Airport in the System</h2>
+    <form action="/addAirportForm" method="get">
+        <!-- Add input fields for new airport -->
+        <button type="submit" name="action" value="addNewAirport">Add New Airport</button>
+    </form>
+
+    <!-- View Flight Ratings -->
+    <h2>View Flight Ratings</h2>
+    <form action="/viewFlightRatingsForm" method="get">
+        <!-- Add input fields for flight ratings view -->
+        <button type="submit" name="action" value="viewFlightRatings">View Flight Ratings</button>
+    </form>
+
+    <!-- Schedule Maintenance -->
+    <h2>Schedule Maintenance</h2>
+    <form action="/scheduleMaintenanceForm" method="get">
+        <!-- Add input fields for maintenance scheduling -->
+        <button type="submit" name="action" value="scheduleMaintenance">Schedule Maintenance</button>
+    </form>
+
+    <!-- View Frequent Customers -->
+    <h2>View Frequent Customers</h2>
+    <form action="/viewFrequentCustomersForm" method="get">
+        <!-- Add input fields for viewing frequent customers -->
+        <button type="submit" name="action" value="viewFrequentCustomers">View Frequent Customers</button>
+    </form>
+
+    <!-- View Earned Revenue -->
+    <h2>View Earned Revenue</h2>
+    <form action="/viewEarnedRevenueForm" method="get">
+        <!-- Add input fields for viewing earned revenue -->
+        <button type="submit" name="action" value="viewEarnedRevenue">View Earned Revenue</button>
+    </form>
+
+    <!-- Logout -->
+    <h2>Logout</h2>
+    <form action="/logout" method="get">
+        <button type="submit" name="action" value="logout">Logout</button>
+    </form>
+
+    <!-- Error message display -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    
+</body>
+
+</html>
