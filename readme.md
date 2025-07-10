@@ -1,4 +1,4 @@
-# CS-UY Introduction to Databases Final Project
+# CS-UY Introduction to Databases Final Project (SQL, PYTHON, FLASK)
 
 ## Use Cases Overview
 
